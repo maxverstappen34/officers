@@ -1,0 +1,7 @@
+2026-06-20 12:26:18 | INFO     | officers_affairs | ============================================================
+2026-06-20 12:26:18 | INFO     | officers_affairs | Officers Affairs Management System — Starting
+2026-06-20 12:26:18 | INFO     | officers_affairs | ============================================================
+2026-06-20 12:26:22 | INFO     | officers_affairs | Database path: c:\Users\Ahmed\Downloads\officers_affairs\data\officers_affairs.db
+2026-06-20 12:26:22 | INFO     | database.db_manager | Database initialised from schema.sqlite
+2026-06-20 12:26:22 | INFO     | officers_affairs | Services initialised OK
+2026-06-20 12:26:42 | INFO     | officers_affairs | Main window launched

@@ -1,0 +1,29 @@
+2026-05-28 13:06:23 | INFO     | officers_affairs | ============================================================
+2026-05-28 13:06:23 | INFO     | officers_affairs | Officers Affairs Management System — Starting
+2026-05-28 13:06:23 | INFO     | officers_affairs | ============================================================
+2026-05-28 13:06:24 | INFO     | officers_affairs | Database path: c:\Users\ahmed\Downloads\officers_affairs\data\officers_affairs.db
+2026-05-28 13:06:24 | INFO     | database.db_manager | Database initialised from schema.sqlite
+2026-05-28 13:06:24 | INFO     | officers_affairs | Services initialised OK
+2026-05-28 13:06:26 | INFO     | officers_affairs | Main window launched
+2026-05-28 13:08:52 | INFO     | database.db_manager | Database backed up to backups\officers_affairs_backup_20260528_130852.db
+2026-05-28 13:11:13 | INFO     | officers_affairs | ============================================================
+2026-05-28 13:11:13 | INFO     | officers_affairs | Officers Affairs Management System — Starting
+2026-05-28 13:11:13 | INFO     | officers_affairs | ============================================================
+2026-05-28 13:11:13 | INFO     | officers_affairs | Database path: c:\Users\ahmed\Downloads\officers_affairs\data\officers_affairs.db
+2026-05-28 13:11:13 | INFO     | database.db_manager | Database initialised from schema.sqlite
+2026-05-28 13:11:13 | INFO     | officers_affairs | Services initialised OK
+2026-05-28 13:11:14 | INFO     | officers_affairs | Main window launched
+2026-05-28 13:12:30 | INFO     | officers_affairs | ============================================================
+2026-05-28 13:12:30 | INFO     | officers_affairs | Officers Affairs Management System — Starting
+2026-05-28 13:12:30 | INFO     | officers_affairs | ============================================================
+2026-05-28 13:12:30 | INFO     | officers_affairs | Database path: c:\Users\ahmed\Downloads\officers_affairs\data\officers_affairs.db
+2026-05-28 13:12:30 | INFO     | database.db_manager | Database initialised from schema.sqlite
+2026-05-28 13:12:30 | INFO     | officers_affairs | Services initialised OK
+2026-05-28 13:12:30 | INFO     | officers_affairs | Main window launched
+2026-05-28 14:33:57 | INFO     | officers_affairs | ============================================================
+2026-05-28 14:33:57 | INFO     | officers_affairs | Officers Affairs Management System — Starting
+2026-05-28 14:33:57 | INFO     | officers_affairs | ============================================================
+2026-05-28 14:33:57 | INFO     | officers_affairs | Database path: c:\Users\ahmed\Downloads\officers_affairs\data\officers_affairs.db
+2026-05-28 14:33:57 | INFO     | database.db_manager | Database initialised from schema.sqlite
+2026-05-28 14:33:57 | INFO     | officers_affairs | Services initialised OK
+2026-05-28 14:34:01 | INFO     | officers_affairs | Main window launched

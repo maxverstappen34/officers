@@ -1,0 +1,39 @@
+2026-10-14 14:27:39 | INFO     | officers_affairs | ============================================================
+2026-10-14 14:27:39 | INFO     | officers_affairs | Officers Affairs Management System — Starting
+2026-10-14 14:27:39 | INFO     | officers_affairs | ============================================================
+2026-10-14 15:36:54 | INFO     | officers_affairs | ============================================================
+2026-10-14 15:36:54 | INFO     | officers_affairs | Officers Affairs Management System — Starting
+2026-10-14 15:36:54 | INFO     | officers_affairs | ============================================================
+2026-10-14 15:36:55 | INFO     | officers_affairs | Database path: d:\officers_affairs\data\officers_affairs.db
+2026-10-14 15:36:55 | INFO     | database.db_manager | Database initialised from schema.sqlite
+2026-10-14 15:36:55 | INFO     | officers_affairs | Services initialised OK
+2026-10-14 15:36:56 | INFO     | officers_affairs | Main window launched
+2026-10-14 15:39:04 | INFO     | officers_affairs | ============================================================
+2026-10-14 15:39:04 | INFO     | officers_affairs | Officers Affairs Management System — Starting
+2026-10-14 15:39:04 | INFO     | officers_affairs | ============================================================
+2026-10-14 15:39:04 | INFO     | officers_affairs | Database path: d:\officers_affairs\data\officers_affairs.db
+2026-10-14 15:39:04 | INFO     | database.db_manager | Database initialised from schema.sqlite
+2026-10-14 15:39:04 | INFO     | officers_affairs | Services initialised OK
+2026-10-14 15:39:05 | INFO     | officers_affairs | Main window launched
+2026-10-14 15:39:25 | INFO     | officers_affairs | ============================================================
+2026-10-14 15:39:25 | INFO     | officers_affairs | Officers Affairs Management System — Starting
+2026-10-14 15:39:25 | INFO     | officers_affairs | ============================================================
+2026-10-14 15:39:25 | INFO     | officers_affairs | Database path: d:\officers_affairs\data\officers_affairs.db
+2026-10-14 15:39:25 | INFO     | database.db_manager | Database initialised from schema.sqlite
+2026-10-14 15:39:25 | INFO     | officers_affairs | Services initialised OK
+2026-10-14 15:39:26 | INFO     | officers_affairs | Main window launched
+2026-10-14 15:48:25 | INFO     | officers_affairs | ============================================================
+2026-10-14 15:48:25 | INFO     | officers_affairs | Officers Affairs Management System — Starting
+2026-10-14 15:48:25 | INFO     | officers_affairs | ============================================================
+2026-10-14 15:48:25 | INFO     | officers_affairs | Database path: d:\officers_affairs\data\officers_affairs.db
+2026-10-14 15:48:25 | INFO     | database.db_manager | Database initialised from schema.sqlite
+2026-10-14 15:48:25 | INFO     | officers_affairs | Services initialised OK
+2026-10-14 15:48:26 | INFO     | officers_affairs | Main window launched
+2026-10-14 16:04:05 | INFO     | officers_affairs | ============================================================
+2026-10-14 16:04:05 | INFO     | officers_affairs | Officers Affairs Management System — Starting
+2026-10-14 16:04:05 | INFO     | officers_affairs | ============================================================
+2026-10-14 16:04:05 | INFO     | officers_affairs | Database path: d:\officers_affairs\data\officers_affairs.db
+2026-10-14 16:04:05 | INFO     | database.db_manager | Database initialised from schema.sqlite
+2026-10-14 16:04:05 | INFO     | officers_affairs | Services initialised OK
+2026-10-14 16:04:07 | INFO     | officers_affairs | Main window launched
+2026-10-14 16:08:13 | ERROR    | services.services | Save officer error: 18 values for 19 columns

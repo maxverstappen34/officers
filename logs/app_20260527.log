@@ -1,0 +1,37 @@
+2026-05-27 23:10:19 | INFO     | officers_affairs | ============================================================
+2026-05-27 23:10:19 | INFO     | officers_affairs | Officers Affairs Management System — Starting
+2026-05-27 23:10:19 | INFO     | officers_affairs | ============================================================
+2026-05-27 23:10:20 | INFO     | officers_affairs | Database path: c:\Users\ahmed\Downloads\officers_affairs\data\officers_affairs.db
+2026-05-27 23:10:20 | INFO     | database.db_manager | Database initialised from schema.sql
+2026-05-27 23:10:20 | INFO     | officers_affairs | Services initialised OK
+2026-05-27 23:10:25 | CRITICAL | officers_affairs | Fatal error: 'NoneType' object has no attribute 'bind'
+Traceback (most recent call last):
+  File "c:\Users\ahmed\Downloads\officers_affairs\main.py", line 61, in main
+    app = MainApp(services)
+  File "c:\Users\ahmed\Downloads\officers_affairs\ui\main_window.py", line 112, in __init__
+    self._build_layout()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "c:\Users\ahmed\Downloads\officers_affairs\ui\main_window.py", line 209, in _build_layout
+    padx=12, pady=6).pack(fill="x").bind if True else None
+                                    ^^^^
+AttributeError: 'NoneType' object has no attribute 'bind'
+2026-05-27 23:14:17 | INFO     | officers_affairs | ============================================================
+2026-05-27 23:14:17 | INFO     | officers_affairs | Officers Affairs Management System — Starting
+2026-05-27 23:14:17 | INFO     | officers_affairs | ============================================================
+2026-05-27 23:14:48 | INFO     | officers_affairs | ============================================================
+2026-05-27 23:14:48 | INFO     | officers_affairs | Officers Affairs Management System — Starting
+2026-05-27 23:14:48 | INFO     | officers_affairs | ============================================================
+2026-05-27 23:41:47 | INFO     | officers_affairs | ============================================================
+2026-05-27 23:41:47 | INFO     | officers_affairs | Officers Affairs Management System — Starting
+2026-05-27 23:41:47 | INFO     | officers_affairs | ============================================================
+2026-05-27 23:41:47 | INFO     | officers_affairs | Database path: c:\Users\ahmed\Downloads\officers_affairs\data\officers_affairs.db
+2026-05-27 23:41:47 | INFO     | database.db_manager | Database initialised from schema.sql
+2026-05-27 23:41:47 | INFO     | officers_affairs | Services initialised OK
+2026-05-27 23:41:48 | INFO     | officers_affairs | Main window launched
+2026-05-27 23:51:07 | INFO     | officers_affairs | ============================================================
+2026-05-27 23:51:07 | INFO     | officers_affairs | Officers Affairs Management System — Starting
+2026-05-27 23:51:07 | INFO     | officers_affairs | ============================================================
+2026-05-27 23:51:07 | INFO     | officers_affairs | Database path: c:\Users\ahmed\Downloads\officers_affairs\data\officers_affairs.db
+2026-05-27 23:51:07 | INFO     | database.db_manager | Database initialised from schema.sql
+2026-05-27 23:51:07 | INFO     | officers_affairs | Services initialised OK
+2026-05-27 23:51:08 | INFO     | officers_affairs | Main window launched

@@ -1,0 +1,21 @@
+2026-06-16 11:39:58 | INFO     | officers_affairs | ============================================================
+2026-06-16 11:39:58 | INFO     | officers_affairs | ============================================================
+2026-06-16 11:39:58 | INFO     | officers_affairs | Officers Affairs Management System — Starting
+2026-06-16 11:39:58 | INFO     | officers_affairs | Officers Affairs Management System — Starting
+2026-06-16 11:39:58 | INFO     | officers_affairs | ============================================================
+2026-06-16 11:39:59 | INFO     | officers_affairs | ============================================================
+2026-06-16 11:40:09 | INFO     | officers_affairs | Database path: c:\Users\Ahmed\Downloads\officers_affairs\data\officers_affairs.db
+2026-06-16 11:40:09 | INFO     | database.db_manager | Database initialised from schema.sqlite
+2026-06-16 11:40:09 | INFO     | officers_affairs | Services initialised OK
+2026-06-16 11:40:09 | INFO     | database.db_manager | Database initialised from schema.sqlite
+2026-06-16 11:40:09 | INFO     | officers_affairs | Services initialised OK
+2026-06-16 11:40:42 | INFO     | officers_affairs | Main window launched
+2026-06-16 11:47:54 | ERROR    | services.services | Save officer error: 18 values for 19 columns
+2026-06-16 11:50:00 | INFO     | officers_affairs | ============================================================
+2026-06-16 11:50:00 | INFO     | officers_affairs | Officers Affairs Management System — Starting
+2026-06-16 11:50:00 | INFO     | officers_affairs | ============================================================
+2026-06-16 11:50:03 | INFO     | officers_affairs | Database path: c:\Users\Ahmed\Downloads\officers_affairs\data\officers_affairs.db
+2026-06-16 11:50:03 | INFO     | database.db_manager | Database initialised from schema.sqlite
+2026-06-16 11:50:03 | INFO     | officers_affairs | Services initialised OK
+2026-06-16 11:50:17 | INFO     | officers_affairs | Main window launched
+2026-06-16 11:56:10 | ERROR    | services.services | Save officer error: 18 values for 19 columns

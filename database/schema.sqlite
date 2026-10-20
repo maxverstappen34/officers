@@ -1,0 +1,302 @@
+-- Officers Affairs Management System - Database Schema
+-- SQLite
+
+PRAGMA foreign_keys = ON;
+PRAGMA journal_mode = WAL;
+PRAGMA synchronous = NORMAL;
+
+-- =============================================
+-- RANKS TABLE
+-- =============================================
+CREATE TABLE IF NOT EXISTS ranks (
+    id          INTEGER PRIMARY KEY AUTOINCREMENT,
+    name        TEXT NOT NULL UNIQUE,
+    order_level INTEGER NOT NULL DEFAULT 0,
+    created_at  TEXT DEFAULT (datetime('now'))
+);
+
+-- =============================================
+-- DEPARTMENTS TABLE
+-- =============================================
+CREATE TABLE IF NOT EXISTS departments (
+    id         INTEGER PRIMARY KEY AUTOINCREMENT,
+    name       TEXT NOT NULL UNIQUE,
+    code       TEXT,
+    created_at TEXT DEFAULT (datetime('now'))
+);
+
+-- =============================================
+-- UNITS TABLE
+-- =============================================
+CREATE TABLE IF NOT EXISTS units (
+    id            INTEGER PRIMARY KEY AUTOINCREMENT,
+    name          TEXT NOT NULL,
+    department_id INTEGER REFERENCES departments(id) ON DELETE SET NULL,
+    created_at    TEXT DEFAULT (datetime('now'))
+);
+
+-- =============================================
+-- OFFICERS TABLE
+-- =============================================
+CREATE TABLE IF NOT EXISTS officers (
+    id                INTEGER PRIMARY KEY AUTOINCREMENT,
+    officer_number    TEXT NOT NULL UNIQUE,
+    full_name         TEXT NOT NULL,
+    rank_id           INTEGER REFERENCES ranks(id) ON DELETE SET NULL,
+    national_id       TEXT UNIQUE,
+    date_of_birth     TEXT,
+    address           TEXT,
+    phone             TEXT,
+    emergency_contact TEXT,
+    marital_status    TEXT CHECK(marital_status IN ('Single','Married','Divorced','Widowed')),
+    blood_type        TEXT CHECK(blood_type IN ('A+','A-','B+','B-','AB+','AB-','O+','O-')),
+    photo_path        TEXT,
+    department_id     INTEGER REFERENCES departments(id) ON DELETE SET NULL,
+    unit_id           INTEGER REFERENCES units(id) ON DELETE SET NULL,
+    job_position      TEXT,
+    date_of_joining   TEXT,
+    current_status    TEXT NOT NULL DEFAULT 'Active'
+                          CHECK(current_status IN ('Active','On Leave','Suspended','Retired')),
+    eligible_for_accumulation INTEGER NOT NULL DEFAULT 0,
+    accumulation_limit_days   INTEGER NOT NULL DEFAULT 0,
+    notes             TEXT,
+    created_at        TEXT DEFAULT (datetime('now')),
+    updated_at        TEXT DEFAULT (datetime('now'))
+);
+
+CREATE INDEX IF NOT EXISTS idx_officers_number   ON officers(officer_number);
+CREATE INDEX IF NOT EXISTS idx_officers_name     ON officers(full_name);
+CREATE INDEX IF NOT EXISTS idx_officers_status   ON officers(current_status);
+CREATE INDEX IF NOT EXISTS idx_officers_dept     ON officers(department_id);
+
+-- =============================================
+-- PROMOTION HISTORY TABLE
+-- =============================================
+CREATE TABLE IF NOT EXISTS promotion_history (
+    id             INTEGER PRIMARY KEY AUTOINCREMENT,
+    officer_id     INTEGER NOT NULL REFERENCES officers(id) ON DELETE CASCADE,
+    previous_rank  TEXT,
+    new_rank       TEXT NOT NULL,
+    promotion_date TEXT NOT NULL,
+    notes          TEXT,
+    created_at     TEXT DEFAULT (datetime('now'))
+);
+
+-- =============================================
+-- ATTENDANCE TABLE
+-- =============================================
+CREATE TABLE IF NOT EXISTS attendance (
+    id         INTEGER PRIMARY KEY AUTOINCREMENT,
+    officer_id INTEGER NOT NULL REFERENCES officers(id) ON DELETE CASCADE,
+    date       TEXT NOT NULL,
+    check_in   TEXT,
+    check_out  TEXT,
+    status     TEXT NOT NULL DEFAULT 'Present'
+                   CHECK(status IN ('Present','Late','Absent','Leave')),
+    notes      TEXT,
+    created_at TEXT DEFAULT (datetime('now')),
+    UNIQUE(officer_id, date)
+);
+
+CREATE INDEX IF NOT EXISTS idx_attendance_officer ON attendance(officer_id);
+CREATE INDEX IF NOT EXISTS idx_attendance_date    ON attendance(date);
+CREATE INDEX IF NOT EXISTS idx_attendance_status  ON attendance(status);
+
+-- =============================================
+-- LEAVE TYPES TABLE
+-- =============================================
+CREATE TABLE IF NOT EXISTS leave_types (
+    id         INTEGER PRIMARY KEY AUTOINCREMENT,
+    name       TEXT NOT NULL UNIQUE,
+    max_days   INTEGER,
+    created_at TEXT DEFAULT (datetime('now'))
+);
+
+-- =============================================
+-- LEAVE REQUESTS TABLE
+-- =============================================
+CREATE TABLE IF NOT EXISTS leave_requests (
+    id              INTEGER PRIMARY KEY AUTOINCREMENT,
+    officer_id      INTEGER NOT NULL REFERENCES officers(id) ON DELETE CASCADE,
+    leave_type_id   INTEGER REFERENCES leave_types(id) ON DELETE SET NULL,
+    start_date      TEXT NOT NULL,
+    end_date        TEXT NOT NULL,
+    duration_days   INTEGER,
+    use_accumulated INTEGER NOT NULL DEFAULT 0,
+    accumulated_days_used INTEGER NOT NULL DEFAULT 0,
+    approval_status TEXT NOT NULL DEFAULT 'Pending'
+                        CHECK(approval_status IN ('Pending','Approved','Rejected')),
+    approved_by     TEXT,
+    request_date    TEXT DEFAULT (datetime('now')),
+    notes           TEXT,
+    created_at      TEXT DEFAULT (datetime('now'))
+);
+
+CREATE INDEX IF NOT EXISTS idx_leave_officer ON leave_requests(officer_id);
+CREATE INDEX IF NOT EXISTS idx_leave_status  ON leave_requests(approval_status);
+CREATE INDEX IF NOT EXISTS idx_leave_dates   ON leave_requests(start_date, end_date);
+
+-- =============================================
+-- LEAVE ACCUMULATION REQUESTS TABLE
+-- =============================================
+CREATE TABLE IF NOT EXISTS leave_accumulation_requests (
+    id              INTEGER PRIMARY KEY AUTOINCREMENT,
+    officer_id      INTEGER NOT NULL REFERENCES officers(id) ON DELETE CASCADE,
+    requested_days  INTEGER NOT NULL,
+    request_reason  TEXT,
+    approval_status TEXT NOT NULL DEFAULT 'Pending'
+                        CHECK(approval_status IN ('Pending','Approved','Rejected')),
+    approved_by     TEXT,
+    reviewed_at     TEXT,
+    request_date    TEXT DEFAULT (datetime('now')),
+    notes           TEXT,
+    created_at      TEXT DEFAULT (datetime('now'))
+);
+
+CREATE INDEX IF NOT EXISTS idx_leave_acc_officer ON leave_accumulation_requests(officer_id);
+CREATE INDEX IF NOT EXISTS idx_leave_acc_status  ON leave_accumulation_requests(approval_status);
+CREATE INDEX IF NOT EXISTS idx_leave_acc_dates   ON leave_accumulation_requests(request_date);
+
+-- =============================================
+-- DAILY DUTIES TABLE
+-- =============================================
+CREATE TABLE IF NOT EXISTS daily_duties (
+    id                INTEGER PRIMARY KEY AUTOINCREMENT,
+    officer_id        INTEGER NOT NULL REFERENCES officers(id) ON DELETE CASCADE,
+    duty_date         TEXT NOT NULL,
+    shift             TEXT CHECK(shift IN ('Morning','Afternoon','Night','Full Day')),
+    assignment        TEXT,
+    duty_location     TEXT,
+    notes             TEXT,
+    completion_status TEXT NOT NULL DEFAULT 'Pending'
+                          CHECK(completion_status IN ('Pending','Completed','Cancelled','Partial')),
+    created_at        TEXT DEFAULT (datetime('now'))
+);
+
+CREATE INDEX IF NOT EXISTS idx_duties_officer ON daily_duties(officer_id);
+CREATE INDEX IF NOT EXISTS idx_duties_date    ON daily_duties(duty_date);
+
+-- =============================================
+-- MEALS LOG TABLE
+-- =============================================
+CREATE TABLE IF NOT EXISTS meals_log (
+    id         INTEGER PRIMARY KEY AUTOINCREMENT,
+    officer_id INTEGER NOT NULL REFERENCES officers(id) ON DELETE CASCADE,
+    meal_date  TEXT NOT NULL,
+    meal_type  TEXT NOT NULL CHECK(meal_type IN ('Breakfast','Lunch','Dinner','Snack')),
+    quantity   INTEGER NOT NULL DEFAULT 1,
+    notes      TEXT,
+    created_at TEXT DEFAULT (datetime('now'))
+);
+
+CREATE INDEX IF NOT EXISTS idx_meals_officer ON meals_log(officer_id);
+CREATE INDEX IF NOT EXISTS idx_meals_date    ON meals_log(meal_date);
+
+-- =============================================
+-- DISCIPLINARY PENALTIES TABLE
+-- =============================================
+CREATE TABLE IF NOT EXISTS disciplinary_penalties (
+    id                      INTEGER PRIMARY KEY AUTOINCREMENT,
+    officer_id              INTEGER NOT NULL REFERENCES officers(id) ON DELETE CASCADE,
+    penalty_type            TEXT NOT NULL,
+    description             TEXT,
+    issue_date              TEXT NOT NULL,
+    severity_level          TEXT NOT NULL CHECK(severity_level IN ('Low','Medium','High','Critical')),
+    status                  TEXT NOT NULL DEFAULT 'Issued'
+                                CHECK(status IN ('Issued','In Effect','Resolved','Waived')),
+    supporting_document     TEXT,
+    created_at              TEXT DEFAULT (datetime('now')),
+    updated_at              TEXT DEFAULT (datetime('now'))
+);
+
+CREATE INDEX IF NOT EXISTS idx_penalties_officer ON disciplinary_penalties(officer_id);
+CREATE INDEX IF NOT EXISTS idx_penalties_status  ON disciplinary_penalties(status);
+CREATE INDEX IF NOT EXISTS idx_penalties_severity ON disciplinary_penalties(severity_level);
+CREATE INDEX IF NOT EXISTS idx_penalties_date ON disciplinary_penalties(issue_date);
+
+-- =============================================
+-- APPEAL REQUESTS TABLE
+-- =============================================
+CREATE TABLE IF NOT EXISTS appeal_requests (
+    id                INTEGER PRIMARY KEY AUTOINCREMENT,
+    penalty_id        INTEGER NOT NULL REFERENCES disciplinary_penalties(id) ON DELETE CASCADE,
+    officer_id        INTEGER NOT NULL REFERENCES officers(id) ON DELETE CASCADE,
+    appeal_reason     TEXT NOT NULL,
+    explanation       TEXT,
+    attachment_path   TEXT,
+    submission_date   TEXT DEFAULT (datetime('now')),
+    status            TEXT NOT NULL DEFAULT 'Pending'
+                        CHECK(status IN ('Pending','Under Review','Approved','Rejected')),
+    created_at        TEXT DEFAULT (datetime('now')),
+    updated_at        TEXT DEFAULT (datetime('now'))
+);
+
+CREATE INDEX IF NOT EXISTS idx_appeals_officer ON appeal_requests(officer_id);
+CREATE INDEX IF NOT EXISTS idx_appeals_penalty ON appeal_requests(penalty_id);
+CREATE INDEX IF NOT EXISTS idx_appeals_status  ON appeal_requests(status);
+CREATE INDEX IF NOT EXISTS idx_appeals_date    ON appeal_requests(submission_date);
+
+-- =============================================
+-- APPEAL REVIEWS TABLE
+-- =============================================
+CREATE TABLE IF NOT EXISTS appeal_reviews (
+    id           INTEGER PRIMARY KEY AUTOINCREMENT,
+    appeal_id     INTEGER NOT NULL REFERENCES appeal_requests(id) ON DELETE CASCADE,
+    reviewer      TEXT NOT NULL,
+    review_date   TEXT DEFAULT (datetime('now')),
+    status        TEXT NOT NULL CHECK(status IN ('Approved','Rejected')),
+    comments      TEXT,
+    created_at    TEXT DEFAULT (datetime('now'))
+);
+
+CREATE INDEX IF NOT EXISTS idx_reviews_appeal ON appeal_reviews(appeal_id);
+
+-- =============================================
+-- ATTACHMENTS TABLE
+-- =============================================
+CREATE TABLE IF NOT EXISTS attachments (
+    id          INTEGER PRIMARY KEY AUTOINCREMENT,
+    record_type TEXT NOT NULL CHECK(record_type IN ('penalty','appeal')),
+    record_id   INTEGER NOT NULL,
+    file_name   TEXT,
+    file_path   TEXT NOT NULL,
+    created_at  TEXT DEFAULT (datetime('now'))
+);
+
+CREATE INDEX IF NOT EXISTS idx_attachments_record ON attachments(record_type, record_id);
+
+-- =============================================
+-- AUDIT LOG TABLE
+-- =============================================
+CREATE TABLE IF NOT EXISTS audit_log (
+    id         INTEGER PRIMARY KEY AUTOINCREMENT,
+    table_name TEXT NOT NULL,
+    record_id  INTEGER,
+    action     TEXT NOT NULL CHECK(action IN ('INSERT','UPDATE','DELETE')),
+    details    TEXT,
+    username   TEXT DEFAULT 'system',
+    timestamp  TEXT DEFAULT (datetime('now'))
+);
+
+-- =============================================
+-- SEED DATA
+-- =============================================
+INSERT OR IGNORE INTO ranks(name, order_level) VALUES
+    ('General',10),('Brigadier General',9),('Colonel',8),('Lieutenant Colonel',7),
+    ('Major',6),('Captain',5),('First Lieutenant',4),('Lieutenant',3),
+    ('Warrant Officer',2),('Sergeant',1);
+
+INSERT OR IGNORE INTO departments(name, code) VALUES
+    ('Operations','OPS'),('Criminal Investigation','CID'),('Traffic','TRF'),
+    ('Administration','ADM'),('Intelligence','INT'),('Community Policing','CMP'),
+    ('Forensics','FOR'),('K9 Unit','K9');
+
+INSERT OR IGNORE INTO leave_types(name, max_days) VALUES
+    ('Annual Leave',30),('Sick Leave',15),('Emergency Leave',7),
+    ('Official Leave',14),('Special Leave',10);
+
+INSERT OR IGNORE INTO units(name, department_id) VALUES
+    ('Alpha Team',1),('Bravo Team',1),('Delta Team',1),
+    ('CID North',2),('CID South',2),
+    ('Traffic North',3),('Traffic South',3),
+    ('HR Section',4),('Finance Section',4);

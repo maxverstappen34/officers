@@ -1,0 +1,13 @@
+# Officers Affairs Management System — Python Dependencies
+# Install with: pip install -r requirements.txt
+
+# Core GUI (built into Python — no install needed, but may need OS package)
+# tkinter  →  sudo apt-get install python3-tk   (Linux)
+#          →  brew install python-tk             (macOS)
+#          →  included with Python on Windows
+
+# Image handling (officer photos)
+Pillow>=10.0.0
+
+# Optional: enhanced date picker
+# tkcalendar>=1.6.0    # pip install tkcalendar

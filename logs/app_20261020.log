@@ -1,0 +1,14 @@
+2026-10-20 13:58:40 | INFO     | officers_affairs | ============================================================
+2026-10-20 13:58:40 | INFO     | officers_affairs | Officers Affairs Management System — Starting
+2026-10-20 13:58:40 | INFO     | officers_affairs | ============================================================
+2026-10-20 13:58:41 | INFO     | officers_affairs | Database path: d:\officers_affairs\data\officers_affairs.db
+2026-10-20 13:58:41 | INFO     | database.db_manager | Database initialised from schema.sqlite
+2026-10-20 13:58:41 | INFO     | officers_affairs | Services initialised OK
+2026-10-20 13:58:42 | INFO     | officers_affairs | Main window launched
+2026-10-20 13:59:22 | INFO     | officers_affairs | ============================================================
+2026-10-20 13:59:22 | INFO     | officers_affairs | Officers Affairs Management System — Starting
+2026-10-20 13:59:22 | INFO     | officers_affairs | ============================================================
+2026-10-20 13:59:22 | INFO     | officers_affairs | Database path: D:\officers_affairs\data\officers_affairs.db
+2026-10-20 13:59:22 | INFO     | database.db_manager | Database initialised from schema.sqlite
+2026-10-20 13:59:22 | INFO     | officers_affairs | Services initialised OK
+2026-10-20 13:59:22 | INFO     | officers_affairs | Main window launched
